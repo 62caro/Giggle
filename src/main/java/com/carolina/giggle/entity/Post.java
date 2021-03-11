@@ -12,17 +12,19 @@ public class Post {
 
     private String title, anons, full_text;
     private int views;
+    private String photos;
     private String user;
 
 
     public Post() {
     }
 
-    public Post(String title, String anons, String full_text, String user) {
+    public Post(String title, String anons, String full_text, String user, String photo) {
         this.title = title;
         this.anons = anons;
         this.full_text = full_text;
         this.user = user;
+        this.photos = photo;
     }
 
     public Long getId() {
@@ -73,5 +75,18 @@ public class Post {
         this.user = user;
     }
 
+    public String getPhotos() {
+        return photos;
+    }
 
+    public void setPhotos(String photos) {
+        this.photos = photos;
+    }
+
+    @Transient
+    public String getPhotosImagePath() {
+        if (photos == null || id == null) return null;
+
+        return "/src/main/resources/templates/user/picture/" + photos;
+    }
 }

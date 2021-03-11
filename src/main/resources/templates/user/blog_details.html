@@ -10,11 +10,12 @@
 <main>
     <div class="container mt-50">
         <h1>Details news</h1>
-        <div th:each="post : ${post}" class="alert alert-info mt-5">
+        <div th:each="post : ${posts}" class="alert alert-info mt-5">
             <h3 th:text="${post.title}"></h3>
             <p th:text="${post.full_text}"></p>
+            <img th:rc="${post.getPhotosImagePath()}" class="img-fluid" style="max-width: 45%">
             <p style="font-style: italic" th:text="'Created: ' + ${post.user}"></p>
-            <b>Views</b> <p th:text="${post.views}"></p>
+            <p th:text="'Views ' + ${post.views}"></p>
             <a th:href="'/blog/' + ${post.id} + '/edit'" class="btn btn-info">Edit</a>
             <form th:action="'/blog/' + ${post.id} + '/delete'">
                 <button type="submit" method="post" class="btn btn-info">Delete</button>
